@@ -1,0 +1,12 @@
+uvicorn>=0.30.0
+fastapi>=0.110,<0.115
+starlette==0.37.2
+sse-starlette>=2.1.0
+httpx>=0.27.0
+python-dotenv>=1.0.1
+a2a
+a2a-sdk
+agno
+qdrant-client==1.15.1
+chonkie[gemini,semantic,viz]>=1.2.1
+pymupdf>=1.24.9
