@@ -282,7 +282,7 @@ if __name__ == "__main__":
     async def get_openapi(request: Request):
         spec = {
             "openapi": "3.0.0",
-            "info": {"title": "MeoBeo RAG API", "version": "1.0.0"},
+            "info": {"title": "MeoBeo RAG API", "version": "1.0.1"},
             "paths": {
                 "/index-file": {
                     "post": {
