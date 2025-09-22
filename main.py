@@ -360,6 +360,42 @@ if __name__ == "__main__":
         app.router.routes.append(Route("/openapi.json", endpoint=get_openapi, methods=["GET"]))  # type: ignore
         app.router.routes.append(Route("/docs", endpoint=swagger_ui, methods=["GET"]))  # type: ignore
 
+    # Print startup configuration
+    logger = logging.getLogger("meobeo")
+    logger.info("=== MeoBeo Agent Startup Configuration ===")
+    logger.info("Version: %s", public_agent_card.version)
+    logger.info("Agent Name: %s", public_agent_card.name)
+    logger.info("Agent URL: %s", public_agent_card.url)
+    logger.info("Host: 0.0.0.0")
+    logger.info("Port: 9995")
+    logger.info("Timeout Keep Alive: 10 seconds")
+
+    # Environment variables and configurations
+    logger.info("--- Environment Variables ---")
+    logger.info("GOOGLE_API_KEY: %s", "***SET***" if os.getenv("GOOGLE_API_KEY") else "NOT SET")
+    logger.info("QDRANT_URL: %s", os.getenv("QDRANT_URL", QDRANT_URL))
+    logger.info("QDRANT_API_KEY: %s", "***SET***" if os.getenv("QDRANT_API_KEY", QDRANT_API_KEY) else "NOT SET")
+    logger.info("QDRANT_COLLECTION: %s", QDRANT_COLLECTION)
+
+    # RAG configuration
+    logger.info("--- RAG Configuration ---")
+    logger.info("RAG_TOP_K: %s", os.getenv("RAG_TOP_K", "5"))
+    logger.info("RAG_CONTEXT_CHAR_LIMIT: %s", os.getenv("RAG_CONTEXT_CHAR_LIMIT", "8000"))
+
+    # Agent capabilities
+    logger.info("--- Agent Capabilities ---")
+    logger.info("Streaming: %s", public_agent_card.capabilities.streaming)
+    logger.info("Push Notifications: %s", public_agent_card.capabilities.push_notifications)
+    logger.info("Input Modes: %s", ", ".join(public_agent_card.default_input_modes))
+    logger.info("Output Modes: %s", ", ".join(public_agent_card.default_output_modes))
+
+    # Skills
+    logger.info("--- Skills ---")
+    for skill in public_agent_card.skills:
+        logger.info("Skill: %s - %s", skill.name, skill.description[:50] + "..." if len(skill.description) > 50 else skill.description)
+
+    logger.info("=== Build Complete - Starting Server ===")
+
     uvicorn.run(app, host="0.0.0.0", port=9995, timeout_keep_alive=10)
 
 
