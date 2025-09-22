@@ -49,7 +49,7 @@ if __name__ == "__main__":
     public_agent_card = AgentCard(
         name="MeoBeoAgent",
         description="Trợ lý trò chuyện tiếng Việt vui vẻ, thân thiện.",
-        url="http://localhost:9995/",
+        url="https://meobeo-agent.wc504.io.vn/",
         version="1.0.0",
         default_input_modes=["text"],
         default_output_modes=["text"],
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     extended_agent_card = AgentCard(
         name="MeoBeoAgent (Extended)",
         description=long_description,
-        url="http://localhost:9995/",
+        url="https://meobeo-agent.wc504.io.vn/",
         version="1.0.0",
         default_input_modes=["text"],
         default_output_modes=["text"],
